@@ -2,6 +2,12 @@
 
 Claude Code skills for creating LinkedIn posts that showcase your code and PRs with styled code screenshots.
 
+## Why
+
+Developers build cool stuff every day but rarely share it. Writing a LinkedIn post feels like a chore -- picking the right snippet, crafting the text, making it look good. So most knowledge stays locked in PRs and private repos.
+
+This skill removes that friction. It turns the code you're already working on into a ready-to-publish LinkedIn post in seconds, so you can focus on building and let the knowledge sharing happen naturally.
+
 ## What It Does
 
 Takes code you wrote (or a PR you worked on) and creates a LinkedIn post with:
