@@ -100,17 +100,18 @@ Summary:
 6. Attach the Carbon screenshot using `upload_image`
 7. Verify the preview looks correct
 
-### Phase 5: User Review
+### Phase 5: User Review & Publish
 
 1. Take a final screenshot of the composed post
-2. Tell the user: "Your post is ready for review. Please check the post in your browser and click Post when you're satisfied."
-3. **STOP. Do NOT click Post or Publish.**
+2. Ask the user: "Your post is ready for review. Would you like me to publish it, or do you want to review and click Post yourself?"
+3. **If the user says to publish** -- click the Post button
+4. **If the user wants to review first** -- stop and let them handle it
 
 ## Common Mistakes
 
 | Mistake | Why It's Wrong | What to Do Instead |
 |---------|---------------|-------------------|
-| Clicking Post/Publish | User must review and publish themselves | Stop after composing, tell user to click Post |
+| Clicking Post/Publish without asking | User must confirm before publishing | Always ask user before clicking Post |
 | Code snippet too long (>30 lines) | Unreadable in LinkedIn image | Trim to 15-30 most interesting lines |
 | Post text too long (>1300 chars) | LinkedIn truncates, lower engagement | Keep concise, use line breaks |
 | Skipping user draft approval | User may want different angle/tone | Always show draft and wait for approval |
@@ -120,7 +121,7 @@ Summary:
 
 ## Hard Rules
 
-1. **NEVER click Post or Publish on LinkedIn** -- the user must do this themselves
+1. **NEVER click Post or Publish on LinkedIn without explicit user confirmation** -- always ask first
 2. **Max 15-30 lines** for the code screenshot -- keep it readable
 3. **Always show the draft** to the user before creating the screenshot
 4. **Always verify LinkedIn login** before attempting to post

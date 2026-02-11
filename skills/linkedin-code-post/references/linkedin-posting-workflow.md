@@ -132,12 +132,22 @@ Check:
 - Image is attached and visible in preview
 - No error messages
 
-### 8. HARD STOP
+### 8. Ask to Publish
 
-**DO NOT click Post, Publish, or any submit button.**
+Ask the user:
+> "Your LinkedIn post is composed and ready. Would you like me to click **Post** to publish it, or would you prefer to review it in your browser and publish it yourself?"
 
-Tell the user:
-> "Your LinkedIn post is composed and ready for review. The post text and code screenshot are in the composer. Please review it in your browser and click **Post** when you're satisfied."
+**If the user confirms publishing:**
+1. Find the Post button:
+   ```
+   find(query="Post button", tabId=tabId)
+   ```
+2. Click the Post button
+3. Wait for confirmation that the post was published
+4. Take a screenshot to verify
+
+**If the user wants to review first:**
+- Stop and let them handle it manually
 
 ## Handling Issues
 

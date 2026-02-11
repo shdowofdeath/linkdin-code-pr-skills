@@ -46,11 +46,11 @@ Claude will:
 3. Draft a post and show it to you for approval
 4. Create a styled code screenshot on Carbon.now.sh
 5. Open LinkedIn and compose the post with the screenshot attached
-6. **Stop and let you review before publishing**
+6. **Ask if you want to publish or review first**
 
 ## Safety
 
-The skill will **never** click Post or Publish on LinkedIn. You always have the final review and publish step.
+The skill will always ask before clicking Post on LinkedIn. You can either let it publish directly or review and click Post yourself.
 
 ## Project Structure
 
