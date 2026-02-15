@@ -4,8 +4,9 @@
 
 - User must be logged into LinkedIn in Chrome
 - Claude in Chrome MCP extension must be connected
-- Post content must be approved by the user (Phase 2)
-- Carbon screenshot `imageId` must be available (Phase 3)
+- Post content must be approved by the user
+
+**Note:** For Project Share mode, this is a text-only post. Skip Step 6 (image attachment). All other steps apply as-is.
 
 ## Step-by-Step Workflow
 
@@ -86,7 +87,11 @@ computer(action="wait", duration=2, tabId=tabId)
 - Emojis can be typed directly as Unicode characters
 - If text appears garbled, try clicking the text area again to refocus
 
-### 6. Attach the Code Screenshot
+### 6. Attach Image (Skip for Text-Only Posts)
+
+**Skip this step entirely for Project Share mode** -- those are text-only posts with no image attachment.
+
+If an image needs to be attached (future use cases):
 
 1. Find the media/image attachment button:
    ```
@@ -105,14 +110,14 @@ computer(action="wait", duration=2, tabId=tabId)
    find(query="file input for image upload", tabId=tabId)
    ```
 
-5. Upload the Carbon screenshot using `upload_image`:
+5. Upload the image using `upload_image`:
    ```
-   upload_image(imageId=carbonImageId, ref=fileInputRef, tabId=tabId, filename="code-screenshot.png")
+   upload_image(imageId=imageId, ref=fileInputRef, tabId=tabId, filename="image.png")
    ```
 
    If the ref approach doesn't work, try coordinate-based drag and drop:
    ```
-   upload_image(imageId=carbonImageId, coordinate=[x, y], tabId=tabId, filename="code-screenshot.png")
+   upload_image(imageId=imageId, coordinate=[x, y], tabId=tabId, filename="image.png")
    ```
 
 6. Wait for upload to complete:
@@ -129,7 +134,7 @@ computer(action="screenshot", tabId=tabId)
 
 Check:
 - Post text is complete and properly formatted
-- Image is attached and visible in preview
+- Image is attached and visible in preview (if applicable)
 - No error messages
 
 ### 8. Ask to Publish

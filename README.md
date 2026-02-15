@@ -1,33 +1,40 @@
-# LinkedIn Code Post Skills
+# LinkedIn Project Share & Job Match Skills
 
-Claude Code skills for creating LinkedIn posts that showcase your code and PRs with styled code screenshots.
+Claude Code skills for sharing what you're building on LinkedIn and matching your skills against job listings.
 
 ## Why
 
-Developers build cool stuff every day but rarely share it. Writing a LinkedIn post feels like a chore -- picking the right snippet, crafting the text, making it look good. So most knowledge stays locked in PRs and private repos.
+Developers build cool stuff every day but rarely share it. Writing a LinkedIn post feels like a chore -- figuring out what to say, making sure you don't leak anything proprietary. So most work stays invisible.
 
-This skill removes that friction. It turns the code you're already working on into a ready-to-publish LinkedIn post in seconds, so you can focus on building and let the knowledge sharing happen naturally.
+On the flip side, when you're job hunting, it's hard to objectively assess how well your skills match a role's requirements.
+
+These skills remove both frictions:
+1. **Project Share** turns your current repo into a ready-to-publish LinkedIn post in seconds, with all IP and PII stripped automatically
+2. **Job Match** analyzes your repos and resume against job descriptions and tells you exactly where you stand
 
 ## What It Does
 
-Takes code you wrote (or a PR you worked on) and creates a LinkedIn post with:
-- A polished post draft tailored for LinkedIn engagement
-- A styled code screenshot from [Carbon.now.sh](https://carbon.now.sh)
-- Browser-automated posting via Claude in Chrome (you click Publish)
+### Project Share (`/linkedin-post`)
 
-## Supported Formats
+Auto-analyzes your current git repo and creates a LinkedIn text post about what you're building:
+- Scans README, package files, git history, and tech stack
+- Strips all proprietary information, secrets, and PII automatically
+- Generates an engaging post draft for your approval
+- Posts to LinkedIn via browser automation (you confirm before publishing)
 
-| Format | Use When |
-|--------|----------|
-| **Code Showcase** | You want to share a specific code snippet, function, or pattern |
-| **PR Review** | You want to share a PR you opened, reviewed, or merged |
+### Job Match (`/job-match`)
+
+Reads job descriptions from local files and compares them against your skills:
+- Extracts skills from your git repos (languages, frameworks, databases, infra, etc.)
+- Extracts skills from your resume (if provided)
+- Cross-references both sources for verified skill evidence
+- Outputs a detailed match report with percentage, gaps, and recommendations
 
 ## Prerequisites
 
 - [Claude Code](https://docs.anthropic.com/en/docs/claude-code) CLI installed
-- [Claude in Chrome](https://chromewebstore.google.com/detail/claude-in-chrome/) extension installed and connected
-- Logged into LinkedIn in Chrome
-- For PR Review format: `gh` CLI authenticated with GitHub
+- For Project Share: [Claude in Chrome](https://chromewebstore.google.com/detail/claude-in-chrome/) extension installed and connected, logged into LinkedIn
+- For Job Match: no additional requirements (runs entirely in the terminal)
 
 ## Installation
 
@@ -40,36 +47,55 @@ cp -R commands/* ~/.claude/commands/
 
 ## Usage
 
-In any Claude Code session:
+### Share what you're building
+
+In any Claude Code session inside a git repo:
 
 ```
 /linkedin-post
 ```
 
 Claude will:
-1. Ask whether you want a Code Showcase or PR Review post
-2. Gather context from your code or PR
-3. Draft a post and show it to you for approval
-4. Create a styled code screenshot on Carbon.now.sh
-5. Open LinkedIn and compose the post with the screenshot attached
-6. **Ask if you want to publish or review first**
+1. Analyze your repo (README, dependencies, git history, tech stack)
+2. Strip all IP/PII and show you what was generalized
+3. Draft a post and show it for your approval
+4. Open LinkedIn and compose the post
+5. **Ask if you want to publish or review first**
+
+### Match your skills to jobs
+
+```
+/job-match
+```
+
+Claude will:
+1. Ask for your job description file(s) and optional resume
+2. Scan your repo(s) for technical skills
+3. Parse your resume for experience and listed skills
+4. Output a match report with Strong/Partial/Missing skill analysis
+5. Provide recommendations for closing gaps
 
 ## Safety
 
-The skill will always ask before clicking Post on LinkedIn. You can either let it publish directly or review and click Post yourself.
+- **IP/PII Protection**: The skill never reads `.env`, credential files, or secrets. Company names, internal metrics, and proprietary details are stripped by default.
+- **User Control**: You always see what was stripped and can choose to restore specific items. You always approve the draft before posting.
+- **LinkedIn Safety**: The skill always asks before clicking Post. You can review and publish manually if you prefer.
 
 ## Project Structure
 
 ```
 skills/
   linkedin-code-post/
-    SKILL.md                         # Core skill definition
+    SKILL.md                              # Core skill definition (two modes)
     references/
-      post-templates.md              # Post templates for both formats
-      carbon-screenshot-workflow.md   # Carbon browser automation steps
-      linkedin-posting-workflow.md    # LinkedIn browser automation steps
-      code-showcase-examples.md      # Example code showcase posts
-      pr-review-examples.md          # Example PR review posts
+      repo-analysis-guide.md              # How to scan repos for metadata and skills
+      pii-ip-safety-rules.md              # IP/PII stripping rules
+      project-share-template.md           # Post template for Project Share
+      project-share-examples.md           # Example Project Share posts
+      job-match-workflow.md               # Job Match end-to-end workflow
+      job-match-output-format.md          # Match report output format
+      linkedin-posting-workflow.md        # LinkedIn browser automation steps
 commands/
-  linkedin-post.md                   # /linkedin-post slash command
+  linkedin-post.md                        # /linkedin-post slash command
+  job-match.md                            # /job-match slash command
 ```
